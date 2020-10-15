@@ -109,11 +109,11 @@ class fredDBTable(object):
         """
         try:
             if not len(self.hashMap['df']):
-                self.constructHashMap()
+                self.setHashMap()
         except:
             raise Exception("Syntax to create table not generated")
         self.__createTableSyntax.append(self.hashMap['df'].columns[1] + " NUMERIC")
-        prefix = " CREATE TABLE " + self.hashMap['tableName'] + " ( "
+        prefix = " CREATE TABLE IF NOT EXISTS " + self.hashMap['tableName'] + " ( "
         suffix, c = ");", ""
         for i in range(len(self.__createTableSyntax)):
             if i == len(self.__createTableSyntax) - 1:
